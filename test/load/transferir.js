@@ -9,7 +9,7 @@ const USUARIOS = ['ana', 'beto', 'carla', 'diego', 'elena'];
 http.setResponseCallback(http.expectedStatuses(200, 400));
 
 export const options = {
-  stages: [
+   stages: [
     { duration: '1m', target: 30 },
     { duration: '10m', target: 30 },
     { duration: '1m', target: 0 },
