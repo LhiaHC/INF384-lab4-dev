@@ -4,11 +4,11 @@ Presupuesto: [ ] min  Métrica DORA: [ ]
 
 ## Parte 1 · Diagnóstico
 ### Defecto 1
-- Job y etapa:
-- Problema que causa en el pipeline:
-- Link al commit:
-- Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests):
-- Evidencia (dato observado, con link al run o fragmento de la salida local):
+- Job y etapa: job (smoke), etapa (deploy)
+- Problema que causa en el pipeline: El job de smoke no espera a que termine el de deploy, por lo que puede probar una versión anterior de la aplicación y no detectar errores en la nueva versión.
+- Link al commit: https://github.com/LhiaHC/INF384-lab4-dev/commit/380be7835d6cbe0d89b8609c3562e7d835c6186c 
+- Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests): mover etapa (La clasificación es mover de etapa, porque smoke ahora depende de deploy y se ejecuta después de que termina el despliegue.)
+- Evidencia (dato observado, con link al run o fragmento de la salida local): https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40957343514 
 ### Defecto 2
 - Job y etapa:
 - Problema que causa en el pipeline:
