@@ -271,8 +271,6 @@ jobs:
 
       - run: npm ci
 
-      - name: Navegador
-        run: npx playwright install --with-deps chromium
 
       - uses: aws-actions/configure-aws-credentials@v6
         with:
