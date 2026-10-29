@@ -28,11 +28,11 @@ Presupuesto: [11] min  Métrica DORA: [change failure rate]
 - Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests): modificar tests + ajustar configuración. Cada ejecución crea su propia base temporal (mkdtemp) y se quitó el DB_PATH fijo del job.
 - Evidencia (dato observado, con link al run o fragmento de la salida local): - Evidencia: Run #8, job integration (https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40963860256/job/123763225562), con base temporal por ejecución en vez de /tmp/wallet.db fijo:tests 12, pass 12, fail 0
 ### Defecto 5
-- Job y etapa:
-- Problema que causa en el pipeline:
-- Link al commit:
-- Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests):
-- Evidencia (dato observado, con link al run o fragmento de la salida local):
+- Job y etapa: e2e, etapa post-deploy.
+- Problema que causa en el pipeline: El job instala chromium en cada run, pero los tests solo hacen llamadas HTTP y no usan el navegador. Ese paso desperdicia tiempo. Además, había tests (monto negativo, ruta 404) que ya se prueban en unit/integration.
+- Link al commit: [link commit ci.yml](https://github.com/LhiaHC/INF384-lab4-dev/commit/26250eba2638ae61196b6ef08ac1f8bdaca1a3b2)] (cambio de tests: [https://github.com/LhiaHC/INF384-lab4-dev/commit/7b62478a7945644f511678a2d3f5729d2fe49b94])
+- Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests): modificar tests + eliminar. Los tests usan request (sin navegador), se eliminó el paso "Navegador" y se quitaron los tests duplicados.
+- Evidencia (dato observado, con link al run o fragmento de la salida local): e2e bajó de 46 s (run #8: [https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40963860256], "Navegador" 22 s) a 21 s (run #10: [https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40964845678], 8 passed).
 
 ## Parte 2 · Implementación
 - Link al run en verde en main:
