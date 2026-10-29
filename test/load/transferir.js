@@ -1,3 +1,4 @@
+// Prueba para verificar que load se omite en un Pull Request
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
