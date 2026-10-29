@@ -1,6 +1,6 @@
 # Respuestas · Laboratorio 4
 Alumno: [20211729]
-Presupuesto: [ ] min  Métrica DORA: [ ]
+Presupuesto: [11] min  Métrica DORA: [change failure rate]
 
 ## Parte 1 · Diagnóstico
 ### Defecto 1
