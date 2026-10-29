@@ -16,11 +16,11 @@ Presupuesto: [11] min  Métrica DORA: [change failure rate]
 - Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests): Ajustar configuración. Se agrega una condición para que load se ejecute solo en main.
 - Evidencia (dato observado, con link al run o fragmento de la salida local): https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40959588072
 ### Defecto 3
-- Job y etapa:
-- Problema que causa en el pipeline:
-- Link al commit:
-- Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests):
-- Evidencia (dato observado, con link al run o fragmento de la salida local):
+- Job y etapa:  sca, etapa pre-build.
+- Problema que causa en el pipeline:  El job sca revisa también las dependencias de desarrollo, lo que puede bloquear el despliegue por vulnerabilidades de herramientas que no se incluyen en producción.
+- Link al commit: https://github.com/LhiaHC/INF384-lab4-dev/commit/07d1e91a965cbe2736cbc777e980a41d3ea7ce04
+- Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests): Ajustar configuración. Se quitó --include-dev-deps para que el análisis SCA no incluya las dependencias de desarrollo.
+- Evidencia (dato observado, con link al run o fragmento de la salida local): https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40961627014/job/123755587764
 ### Defecto 4
 - Job y etapa:
 - Problema que causa en el pipeline:
