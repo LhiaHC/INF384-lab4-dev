@@ -10,11 +10,11 @@ Presupuesto: [11] min  Métrica DORA: [change failure rate]
 - Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests): mover etapa (La clasificación es mover de etapa, porque smoke ahora depende de deploy y se ejecuta después de que termina el despliegue.)
 - Evidencia (dato observado, con link al run o fragmento de la salida local): https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40957343514 
 ### Defecto 2
-- Job y etapa:
-- Problema que causa en el pipeline:
-- Link al commit:
-- Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests):
-- Evidencia (dato observado, con link al run o fragmento de la salida local):
+- Job y etapa: load, etapa post-deploy.
+- Problema que causa en el pipeline: El job load también se ejecuta en los pull requests, haciendo que el pipeline demore más de lo necesario.
+- Link al commit: https://github.com/LhiaHC/INF384-lab4-dev/commit/0a58f7d2304d311ca9be3675885c53532fabf10d
+- Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests): Ajustar configuración. Se agrega una condición para que load se ejecute solo en main.
+- Evidencia (dato observado, con link al run o fragmento de la salida local): https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40959588072
 ### Defecto 3
 - Job y etapa:
 - Problema que causa en el pipeline:
