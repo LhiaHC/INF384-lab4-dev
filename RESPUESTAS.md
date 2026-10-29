@@ -35,11 +35,11 @@ Presupuesto: [11] min  Métrica DORA: [change failure rate]
 - Evidencia (dato observado, con link al run o fragmento de la salida local): e2e bajó de 46 s (run #8: [https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40963860256], "Navegador" 22 s) a 21 s (run #10: [https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40964845678], 8 passed).
 
 ## Parte 2 · Implementación
-- Link al run en verde en main:
-- Link al pull request:
-- Defecto de la aplicación introducido (archivo y descripción):
-- Job que debería detenerlo:
-- Link al run fallido:
+- Link al run en verde en main: https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40964845678
+- Link al pull request: https://github.com/LhiaHC/INF384-lab4-dev/pull/1
+- Defecto de la aplicación introducido (archivo y descripción): src/util.js. validarMonto cambia "monto <= 0" por "monto < 0", así que acepta monto 0. POST /transferir con monto 0 devuelve 200 y registra un movimiento, cuando debería devolver 400
+- Job que debería detenerlo: unit
+- Link al run fallido: https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40966035799/job/123770665447
 
 ## Parte 3 · Decisión bajo restricción
 Link al run medido:
