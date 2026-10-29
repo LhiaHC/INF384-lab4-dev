@@ -42,20 +42,20 @@ Presupuesto: [11] min  Métrica DORA: [change failure rate]
 - Link al run fallido: https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40966035799/job/123770665447
 
 ## Parte 3 · Decisión bajo restricción
-Link al run medido:
+Link al run medido: https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40964845678
 
 | Job | Duración (min:seg) |
 |---|---|
-| unit | |
-| integration | |
-| sast | |
-| sca | |
-| build-push | |
-| deploy | |
-| smoke | |
-| e2e | |
-| load | |
-| **Total** | |
+| unit | 0:10 |
+| integration | 0:15 |
+| sast | 0:20 |
+| sca | 0:12 |
+| build-push | 0:33 |
+| deploy | 0:15 |
+| smoke | 0:10 |
+| e2e | 0:21 |
+| load | 12:13 |
+| **Total** | **14:29** |
 
 Resultado de load en ese run:
 | Métrica | Valor |
