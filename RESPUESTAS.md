@@ -60,28 +60,38 @@ Link al run medido: https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40964
 Resultado de load en ese run:
 | Métrica | Valor |
 |---|---|
-| p90 | |
-| p95 | |
-| Máximo | |
-| Tasa de error | |
-| Requests por segundo | |
+| p90 | 72,83 ms |
+| p95 | 75,04 ms |
+| Máximo | 3,72 s |
+| Tasa de error | 0,00 % (0 de 34 910) |
+| Requests por segundo | 48,45 req/s |
 
 Conclusión sobre el comportamiento bajo carga:
+La aplicación aguantó bien la carga. Con 30 usuarios durante 12 minutos, el 95 % de los requests respondió en menos de 75 ms y no hubo ningún error. Solo hubo un request lento de 3,72 s, que seguramente fue el arranque en frío de una instancia nueva de Lambda.
 
 SLO propuesto (percentil, valor, ventana) y justificación:
+El 95 % de los requests debe responder en menos de 150 ms, medido en los últimos 28 días. En el pipeline lo puse como SLO_P95 = 150.
+Elegí 150 ms porque es el doble de lo que medí (75 ms). Así load no falla por variaciones normales entre runs, pero sí falla si un cambio hace que la app se vuelva mucho más lenta. El valor anterior de 500 ms era demasiado alto y casi nunca fallaría.
 
 SLA propuesto y diferencia con el SLO:
+El 99 % de los requests de cada mes responderá en menos de 1 segundo. Si no se cumple, se compensa al cliente.
+El SLO es una meta interna del equipo, y el SLA es una promesa al cliente con consecuencias si no se cumple. Por eso el SLA es más flexible: si la app se pone lenta, el equipo lo nota primero con el SLO y tiene tiempo de corregirlo antes de fallarle al cliente.
 
 Cambios para cumplir el presupuesto:
 | Cambio | Job | Minutos recuperados |
 |---|---|---|
+| Reducir la prueba de carga: subida 15 s, carga constante 4 min, bajada 15 s (antes 1 + 10 + 1 min) | load | 7,5 (12:13 → 4:43) |
 
-Total resultante: [ ] min
-Link al run en main con los cambios:
+Total resultante: 7:10 min (11 + 13 + 16 + 20 + 47 + 16 + 8 + 16 + 283 s = 430 s)
+Link al run en main con los cambios: https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40968793126
+
 
 Riesgo aceptado (defecto de la aplicación concreto y efecto en la métrica DORA asignada):
-
+Al reducir la prueba de carga de 10 a 4 minutos, el pipeline puede dejar pasar problemas que solo aparecen después de varios minutos. Por ejemplo, si alguien cambia db.js para calcular el saldo sumando todos los movimientos, /saldo se pone más lento a medida que se hacen transferencias. En 4 minutos todavía no se nota, pero en 10 sí. Ese cambio llegaría a producción y fallaría con los clientes.
+Esto hace que el Change Failure Rate suba, porque habría más despliegues que terminan causando fallas.
 Decisión sobre sast (se queda / se mueve a otra etapa o evento / informativo) y razón:
-
+Se queda donde está. Solo demora 20 segundos y el pipeline ya cumple el presupuesto de 11 minutos sin tocarlo. Si lo quitara o lo volviera informativo, podría llegar a producción código inseguro, y eso haría subir el Change Failure Rate. Dejándolo, el problema se detiene antes de desplegarse.
 ## Declaración de uso de IA
 Herramientas usadas y para qué:
+- GPT: revisión del código yml, sugerencia de correcciones y testeos para evidencia y apoyo en la redacción.
+- Yo hice los commits, ejecuté los runs, revisé los logs, obtuve las evidencias y verifiqué cada corrección.
