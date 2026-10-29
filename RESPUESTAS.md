@@ -22,11 +22,11 @@ Presupuesto: [11] min  Métrica DORA: [change failure rate]
 - Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests): Ajustar configuración. Se quitó --include-dev-deps para que el análisis SCA no incluya las dependencias de desarrollo.
 - Evidencia (dato observado, con link al run o fragmento de la salida local): https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40961627014/job/123755587764
 ### Defecto 4
-- Job y etapa:
-- Problema que causa en el pipeline:
-- Link al commit:
-- Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests):
-- Evidencia (dato observado, con link al run o fragmento de la salida local):
+- Job y etapa: integration, etapa pre-build.
+- Problema que causa en el pipeline: Los tests usan siempre la misma base (/tmp/wallet.db) y suponen que empieza con los saldos iniciales. La primera vez pasan, pero si se vuelven a correr sobre esa base fallan aunque el código esté bien, porque los saldos ya cambiaron. Así dan falsos errores.
+- Link al commit: https://github.com/LhiaHC/INF384-lab4-dev/commit/2d3417ec2b59211f916feaae12e83fbeb329127e
+- Corrección (una o más: mover de etapa / dejar como informativo / eliminar / ajustar configuración / modificar tests): modificar tests + ajustar configuración. Cada ejecución crea su propia base temporal (mkdtemp) y se quitó el DB_PATH fijo del job.
+- Evidencia (dato observado, con link al run o fragmento de la salida local): - Evidencia: Run #8, job integration (https://github.com/LhiaHC/INF384-lab4-dev/actions/runs/40963860256/job/123763225562), con base temporal por ejecución en vez de /tmp/wallet.db fijo:tests 12, pass 12, fail 0
 ### Defecto 5
 - Job y etapa:
 - Problema que causa en el pipeline:
